@@ -2,6 +2,7 @@ import axios from 'axios';
 import { format } from 'timeago.js';
 import React, { useEffect, useState } from 'react';
 import Card from '../components/Card.jsx';
+import { BASE_URL } from '../constants.js';
 
 const Home = ({ isLoggedIn }) => {
   const [videos, setVideos] = useState([]);
@@ -12,7 +13,7 @@ const Home = ({ isLoggedIn }) => {
     const getVideos = async () => {
       try {
         //TODO call recommendation api if logged in
-        const response = await axios.get('http://localhost:8000/api/v1/videos/random/video', {
+        const response = await axios.get(`${BASE_URL}/api/v1/videos/random/video`, {
           withCredentials: true,
         });
         console.log('API Response:', response.data); // Check the entire response

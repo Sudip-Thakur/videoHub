@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Card from '../components/Card.jsx';
 import { format } from 'timeago.js';
+import { BASE_URL } from '../constants.js';
 
 const Channel = () => {
   const { channelId } = useParams();
