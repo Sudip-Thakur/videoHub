@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import axios from 'axios';
+import { BASE_URL } from '../constants';
 
 const ChannelCard = ({ channelId, avatar, name, bio, subscriberCount, subscribed, videoCount }) => {
   const [isSubscribed, setIsSubscribed] = useState(subscribed);
@@ -8,7 +9,7 @@ const ChannelCard = ({ channelId, avatar, name, bio, subscriberCount, subscribed
 
   const handleToggleSubscribe = async () => {
     try {
-      const response = await axios.post(`http://localhost:8000/api/v1/subscriptions/channel/${channelId}`, {}, {
+      const response = await axios.post(`${BASE_URL}/api/v1/subscriptions/channel/${channelId}`, {}, {
         withCredentials: true
       });
       const updatedSubscriptionStatus = response.data.data.subscribed;

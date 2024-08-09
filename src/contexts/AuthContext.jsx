@@ -1,7 +1,7 @@
 // AuthContext.jsx
 import React, { createContext, useContext, useState } from 'react';
 import axios from 'axios';
-
+import { BASE_URL } from '../constants.js';
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
@@ -10,7 +10,7 @@ export const AuthProvider = ({ children }) => {
 
   const checkAuthStatus = async () => {
     try {
-      const response = await axios.get('http://localhost:8000/api/v1/users/current-user', {
+      const response = await axios.get(`${BASE_URL}/api/v1/users/current-user`, {
         withCredentials: true,
       });
       if (response.data.success) {
