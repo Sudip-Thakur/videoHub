@@ -1,50 +1,3 @@
-// import React from 'react';
-// import VideoPlayer from '../components/VideoPlayer.jsx'; // Adjust the import path as needed
-// import VideoPreview from '../components/VideoPreview.jsx'; // Adjust the import path as needed
-// import CommentsSection from '../components/CommentsSection.jsx'; // Adjust the import path as needed
-
-// const Video = () => {
-//   return (
-//     <div className="flex w-full h-screen bg-white">
-//       {/* Video Player on the left */}
-//       <div className="w-3/4 h-full p-4 flex flex-col">
-//         <div className="flex-grow bg-white">
-//           <VideoPlayer />
-//         </div>
-
-//         {/* Comments Section below VideoPlayer */}
-//         <div className="w-full mt-4 bg-white p-4 border-t border-gray-200">
-//           <CommentsSection />
-//         </div>
-//       </div>
-
-//       {/* Related Videos on the right */}
-//       <div className="w-1/4 h-full p-4 bg-white overflow-y-auto border-l border-gray-200">
-//         <h2 className="text-xl font-bold mb-4">Related Videos</h2>
-//         <div className="flex flex-col space-y-4">
-//           <VideoPreview
-//             thumbnail="http://res.cloudinary.com/dvla5jcq0/image/upload/v1721279668/sample_thumbnail1.jpg"
-//             videoId="1"
-//             title="Sample Video 1"
-//           />
-//           <VideoPreview
-//             thumbnail="http://res.cloudinary.com/dvla5jcq0/image/upload/v1721279668/sample_thumbnail2.jpg"
-//             videoId="2"
-//             title="Sample Video 2"
-//           />
-//           {/* Add more VideoPreview components as needed */}
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Video;
-
-
-
-
-
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
@@ -72,22 +25,6 @@ const Video = () => {
         setLoading(false);
       }
     };
-
-    // const fetchRelatedVideos = async () => {
-    //   try {
-    //     //TODO call recommendation api if logged in
-    //     const response = await axios.get(`${BASE_URL}/api/v1/videos/random/video`, {
-    //       withCredentials: true,
-    //     });
-    //     console.log('API Response:', response.data); // Check the entire response
-    //     console.log('Fetched Videos:', response.data.data); // Check the videos data
-    //     setRelatedVideos(response.data.data); // Update the videos state
-    //   } catch (error) {
-    //     console.error('Error fetching videos:', error);
-    //   } finally {
-    //     setLoading(false);
-    //   }
-    // };
 
     fetchVideoData();
     // fetchRelatedVideos();
@@ -122,7 +59,6 @@ const Video = () => {
       console.error('Error subscribing to channel:', error);
     }
   };
-
   console.log(videoData)
   if (loading) {
     return <div>Loading...</div>;
