@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, {useEffect, useState} from 'react';
 import ChannelCard from '../components/ChannelCard'; // Ensure the import path is correct
+import { BASE_URL } from '../constants';
 
 function Subscription() {
   const [channels, setChannels] = useState([]);
@@ -11,7 +12,7 @@ function Subscription() {
     const getChannels = async () => {
       try {
         //TODO call recommendation api if logged in
-        const response = await axios.get('http://localhost:8000/api/v1/subscriptions/channels', {
+        const response = await axios.get(`${BASE_URL}/api/v1/subscriptions/channels`, {
           withCredentials: true,
         });
         console.log('API Response:', response.data); // Check the entire response

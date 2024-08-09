@@ -17,7 +17,7 @@ const Channel = () => {
     setLoading(true);
     const getChannelData = async () => {
       try {
-        const response = await axios.get(`http://localhost:8000/api/v1/users/get/${channelId}`, {
+        const response = await axios.get(`${BASE_URL}/api/v1/users/get/${channelId}`, {
           withCredentials: true
         });
         const fetchedData = response.data.data[0];
@@ -38,7 +38,7 @@ const Channel = () => {
     setLoading(true);
     const getVideos = async () => {
       try {
-        const response = await axios.get(`http://localhost:8000/api/v1/videos/channel/${channelId}`, {
+        const response = await axios.get(`${BASE_URL}/api/v1/videos/channel/${channelId}`, {
           withCredentials: true,
         });
         console.log('API Response:', response.data); // Check the entire response
@@ -61,7 +61,7 @@ const Channel = () => {
 
   const handleSubscribe = async () => {
     try {
-      const response = await axios.post(`http://localhost:8000/api/v1/subscriptions/channel/${channelId}`, {}, {
+      const response = await axios.post(`${BASE_URL}/api/v1/subscriptions/channel/${channelId}`, {}, {
         withCredentials: true
       });
       const updatedSubscriptionStatus = response.data.data.subscribed;

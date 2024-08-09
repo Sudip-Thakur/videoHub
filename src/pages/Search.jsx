@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import SearchCard from '../components/SearchCard.jsx';
 import { useParams } from 'react-router-dom';
 import { format } from 'timeago.js';
+import { BASE_URL } from '../constants.js';
 
 const Search = () => {
   const { keyword } = useParams();
@@ -13,7 +14,7 @@ const Search = () => {
     setLoading(true);
     const getVideos = async () => {
       try {
-        const response = await axios.get(`http://localhost:8000/api/v1/videos/search/${keyword}`, {
+        const response = await axios.get(`${BASE_URL}/api/v1/videos/search/${keyword}`, {
           withCredentials: true // Corrected 'withCredentials'
         });
         setVideos(response.data.data); // Update the videos state

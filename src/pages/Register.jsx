@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { BASE_URL } from '../constants.js';
 
 const Signup = () => {
   const [username, setUsername] = useState('');
@@ -56,7 +57,7 @@ const Signup = () => {
 
     // Temporary placeholder for signup logic
     try {
-      const response = await axios.post('http://localhost:8000/api/v1/users/register',{
+      const response = await axios.post(`${BASE_URL}/api/v1/users/register`,{
         fullname:fullName,
         username:username,
         email:email,

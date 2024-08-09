@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import SmallCard from '../components/SmallCard.jsx'; // Ensure the import path is correct
 import { format } from 'timeago.js';
+import { BASE_URL } from '../constants.js';
 
 function Liked() {
   const [videos, setVideos] = useState([]);
@@ -12,7 +13,7 @@ function Liked() {
     const getVideos = async () => {
       try {
         //TODO call recommendation api if logged in
-        const response = await axios.get('http://localhost:8000/api/v1/likes/likedVideo', {
+        const response = await axios.get(`${BASE_URL}/api/v1/likes/likedVideo`, {
           withCredentials: true,
         });
         console.log('API Response:', response.data); // Check the entire response
