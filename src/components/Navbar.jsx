@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import axios from 'axios';
+import { BASE_URL } from '../constants.js';
 
 const Navbar = ({ isLoggedIn }) => {
   const [searchKeyword, setSearchKeyword] = useState('');
@@ -29,7 +30,7 @@ const Navbar = ({ isLoggedIn }) => {
 
   const handleLogout = async () => {
     try {
-      await axios.post('http://localhost:8000/api/v1/users/logout', {}, { withCredentials: true });
+      await axios.post(`${BASE_URL}/api/v1/users/logout`, {}, { withCredentials: true });
       setIsLoggedIn(false);
       setUser(null);
       navigate('/');

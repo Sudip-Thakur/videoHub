@@ -4,15 +4,17 @@ import axios from 'axios';
 import { BASE_URL } from '../constants.js';
 const AuthContext = createContext();
 
+const axiosInstance = axios.create({
+  baseURL: BASE_URL,
+  withCredentials: true, // This ensures cookies are sent with requests
+});
 export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState(null);
 
   const checkAuthStatus = async () => {
     try {
-      const response = await axios.get(`${BASE_URL}/api/v1/users/current-user`, {
-        withCredentials: true,
-      });
+      const response = await axiosInstance.get(`/api/v1/users/current-user`);
       if (response.data.success) {
         setUser(response.data.data);
         setIsLoggedIn(true);
