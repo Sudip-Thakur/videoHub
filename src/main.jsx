@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import './index.css'
 import { createBrowserRouter, createRoutesFromElements, Route, Router, RouterProvider } from 'react-router-dom'
 import Layout from './Layout.jsx'
+import Create from './pages/Create.jsx'
 import Home from './pages/Home.jsx'
 import Liked from './pages/Liked.jsx'
 import Search from './pages/Search.jsx'
@@ -31,6 +32,7 @@ const router = createBrowserRouter(
       <Route path='register' element={<Register/>}/>
       <Route path='channel/:channelId' element={<Channel/>}/>
       <Route path='mychannel' element={<MyChannel/>}/>
+      <Route path='create' element={< Create/>}></Route>
     </Route>
   )
 )
