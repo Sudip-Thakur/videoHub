@@ -93,35 +93,35 @@ const Video = () => {
     // fetchRelatedVideos();
   }, [videoId]);
 
-  // const handleLike = async () => {
-  //   try {
-  //     const response = await axios.post(`${BASE_URL}/api/v1/likes/video/${videoId}`, {}, {
-  //       withCredentials: true,
-  //     });
-  //     setVideoData(prevState => ({
-  //       ...prevState,
-  //       liked: response.data.data.liked,
-  //       like_count: response.data.data.liked ? prevState.like_count + 1 : prevState.like_count - 1
-  //     }));
-  //   } catch (error) {
-  //     console.error('Error liking video:', error);
-  //   }
-  // };
+  const handleLike = async () => {
+    try {
+      const response = await axios.post(`${BASE_URL}/api/v1/likes/video/${videoId}`, {}, {
+        withCredentials: true,
+      });
+      setVideoData(prevState => ({
+        ...prevState,
+        liked: response.data.data.liked,
+        like_count: response.data.data.liked ? prevState.like_count + 1 : prevState.like_count - 1
+      }));
+    } catch (error) {
+      console.error('Error liking video:', error);
+    }
+  };
 
-  // const handleSubscribe = async () => {
-  //   try {
-  //     const response = await axios.post(`${BASE_URL}/api/v1/subscriptions/channel/${videoData.channel_id}`, {}, {
-  //       withCredentials: true
-  //     });
-  //     setVideoData(prevState => ({
-  //       ...prevState,
-  //       subscribed: response.data.data.subscribed,
-  //       sub_count: response.data.data.subscribed ? prevState.sub_count + 1 : prevState.sub_count - 1
-  //     }));
-  //   } catch (error) {
-  //     console.error('Error subscribing to channel:', error);
-  //   }
-  // };
+  const handleSubscribe = async () => {
+    try {
+      const response = await axios.post(`${BASE_URL}/api/v1/subscriptions/channel/${videoData.channel_id}`, {}, {
+        withCredentials: true
+      });
+      setVideoData(prevState => ({
+        ...prevState,
+        subscribed: response.data.data.subscribed,
+        sub_count: response.data.data.subscribed ? prevState.sub_count + 1 : prevState.sub_count - 1
+      }));
+    } catch (error) {
+      console.error('Error subscribing to channel:', error);
+    }
+  };
 
   console.log(videoData)
   if (loading) {
