@@ -119,7 +119,7 @@ const Navbar = ({ isLoggedIn }) => {
             </button>
             <div className="relative">
               <img
-                src={user?.avatar || 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vecteezy.com%2Ffree-vector%2Fdefault-profile-picture&psig=AOvVaw1W7wPF76TPvwUohzNxsRBb&ust=1723381469966000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCIjd7rS-6ocDFQAAAAAdAAAAABAE'}
+                src={user?.avatar || 'https://www.shutterstock.com/image-vector/default-avatar-profile-vector-user-260nw-1705357234.jpg'}
                 alt="Profile"
                 className="w-10 h-10 rounded-full cursor-pointer"
                 onClick={toggleDropdown}
