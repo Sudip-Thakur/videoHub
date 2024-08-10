@@ -28,6 +28,7 @@ const WatchHistory = () => {
   if (loading) {
     return <div className="h-screen bg-gray-100 flex items-center justify-center">Loading...</div>;
   }
+  console.log(watchHistory)
   return (
     <div className="h-screen bg-gray-100 overflow-y-auto">
       {/* Fixed Title */}
@@ -41,7 +42,7 @@ const WatchHistory = () => {
           watchHistory.map((item, index) => (
             <SmallCard 
               key={index} // Ensure your watch history items have a unique 'id'
-              videoId={item.videoId} // Adjust based on the actual data structure
+              videoId={item.videoid} // Adjust based on the actual data structure
               title={item.videotitle}
               views={item.videoviews}
               timestamp={format(item.watchedat)}
