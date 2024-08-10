@@ -24,6 +24,7 @@ const VideoPlayer = ({
   const [isSubscribed, setIsSubscribed] = useState(subscribed || false);
   const [subCount, setSubCount] = useState(channelSubscribers || 0);
   const [showFullDescription, setShowFullDescription] = useState(false);
+  const [volume, setVolume] = useState(0.5); // Default volume level (0.5 is 50%)
 
   useEffect(() => {
     // Only update state if the incoming props are defined
@@ -63,6 +64,10 @@ const VideoPlayer = ({
     setShowFullDescription(prev => !prev);
   };
 
+  const handleVolumeChange = (event) => {
+    setVolume(event.target.value);
+  };
+
   // Ensure that all required data is available before rendering
   if (!videoUrl || !videoTitle || !videoViews || !channelId || !channelName || !channelAvatar) {
     return <div>Loading...</div>;
@@ -74,11 +79,22 @@ const VideoPlayer = ({
         <video
           className="w-full h-auto rounded-lg"
           controls
+          autoPlay
+          volume={volume}
           onError={(e) => console.error('Error loading video:', e)}
         >
           <source src={videoUrl} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
+        <input
+          type="range"
+          min="0"
+          max="1"
+          step="0.01"
+          value={volume}
+          onChange={handleVolumeChange}
+          className="mt-2 w-full"
+        />
       </div>
       <div className="mt-4">
         <h2 className="text-xl font-bold">{videoTitle}</h2>
