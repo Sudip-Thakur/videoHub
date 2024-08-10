@@ -96,7 +96,7 @@ const Video = () => {
 
         {/* Comments Section below VideoPlayer */}
         <div className="w-full mt-4 bg-white p-4 border-t border-gray-200">
-          <CommentsSection comments={videoData.comment} />
+          <CommentsSection comments={videoData.comments} />
         </div>
       </div>
 
