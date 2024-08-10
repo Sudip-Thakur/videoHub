@@ -43,7 +43,7 @@ const Navbar = ({ isLoggedIn }) => {
     <nav className="bg-gray-800 p-4 flex justify-between items-center text-white sticky top-0 z-50">
       {/* Logo */}
       <div className="text-lg font-bold cursor-pointer" onClick={handleLogoClick}>
-        Logo
+        VideoHub
       </div>
 
       {/* Search Box */}
