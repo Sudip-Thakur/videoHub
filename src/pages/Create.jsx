@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { BASE_URL } from '../constants.js';
 
 const Create = () => {
   const [successMessage, setSuccessMessage] = useState('');
@@ -24,7 +25,7 @@ const Create = () => {
     formData.append('thumbnail', values.thumbnail);
 
     try {
-      const response = await axios.post('http://localhost:8000/api/v1/videos/upload-video', formData, {
+      const response = await axios.post(`${BASE_URL}/api/v1/videos/upload-video`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
         withCredentials: true // Ensure cookies are sent with the request
       });
