@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { BASE_URL } from '../constants.js';
 
-const Signup = () => {
+const Register = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [fullName, setFullName] = useState('');
@@ -186,4 +186,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default Register;
