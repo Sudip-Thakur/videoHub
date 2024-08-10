@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { BASE_URL } from '../constants.js';
 
@@ -65,9 +65,9 @@ const Login = () => {
         </form>
         <div className="mt-4 text-center">
           <p className="text-sm text-gray-600">Don't have an account?</p>
-          <a href="/register" className="text-blue-500 font-semibold hover:underline">
+          <Link to="/register" className="text-blue-500 font-semibold hover:underline">
             Sign Up
-          </a>
+          </Link>
         </div>
       </div>
     </div>

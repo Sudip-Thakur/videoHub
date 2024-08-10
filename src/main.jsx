@@ -12,11 +12,10 @@ import Video from './pages/Video.jsx'
 import WatchHistory from './pages/WatchHistory.jsx'
 import Playlist from './pages/Playlist.jsx'
 import Login from './pages/Login.jsx'
-import Register from './pages/Register.jsx'
 import Channel from './pages/Channel.jsx'
 import MyChannel from './pages/MyChannel.jsx'
 import { AuthProvider } from './contexts/AuthContext.jsx'
-
+import Register from './pages/Register.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -30,6 +29,7 @@ const router = createBrowserRouter(
       <Route path='watch-history' element={<WatchHistory/>}/>
       <Route path='login' element={<Login/>}/>
       <Route path='register' element={<Register/>}/>
+      <Route path='signup' element={<Register/>}/>
       <Route path='channel/:channelId' element={<Channel/>}/>
       <Route path='mychannel' element={<MyChannel/>}/>
       <Route path='create' element={< Create/>}></Route>
