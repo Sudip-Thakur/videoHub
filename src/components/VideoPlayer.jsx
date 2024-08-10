@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 
-const VideoPlayer = () => {
+const VideoPlayer = ({videoUrl,videoTitle,videoDescription,videoViews,videoTimestamp, channelId, channelName,channelAvatar,channelSubscribers}) => {
   const [subscribed, setSubscribed] = useState(false);
 
-  const videoUrl = 'http://res.cloudinary.com/dvla5jcq0/video/upload/v1721279750/p3slxuwh5ycwfqetfyjl.mp4'; // Replace with your video URL
-  const videoTitle = 'Sample Video Title';
-  const videoDescription = 'This is a sample video description.';
-  const videoViews = '1.2M views';
-  const videoTimestamp = '2 days ago';
-  const channelId = '2'; // Replace with dynamic channel ID if needed
-  const channelName = "Channel Name";
-  const channelAvatar = 'http://res.cloudinary.com/dvla5jcq0/image/upload/v1721279668/esrwtg8kjanliwo8q7xh.jpg'; // Update with correct path if necessary
-  const channelSubscribers = '500K subscribers'; // Replace with dynamic subscriber count if needed
+  // const videoUrl = 'http://res.cloudinary.com/dvla5jcq0/video/upload/v1721279750/p3slxuwh5ycwfqetfyjl.mp4'; // Replace with your video URL
+  // const videoTitle = 'Sample Video Title';
+  // const videoDescription = 'This is a sample video description.';
+  // const videoViews = '1.2M views';
+  // const videoTimestamp = '2 days ago';
+  // const channelId = '2'; // Replace with dynamic channel ID if needed
+  // const channelName = "Channel Name";
+  // const channelAvatar = 'http://res.cloudinary.com/dvla5jcq0/image/upload/v1721279668/esrwtg8kjanliwo8q7xh.jpg'; // Update with correct path if necessary
+  // const channelSubscribers = '500K subscribers'; // Replace with dynamic subscriber count if needed
 
   const handleSubscribeToggle = () => {
     setSubscribed(!subscribed);

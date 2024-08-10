@@ -5,6 +5,7 @@ import VideoPlayer from '../components/VideoPlayer.jsx'; // Adjust the import pa
 import VideoPreview from '../components/VideoPreview.jsx'; // Adjust the import path as needed
 import CommentsSection from '../components/CommentsSection.jsx'; // Adjust the import path as needed
 import { BASE_URL } from '../constants.js';
+import { format } from 'timeago.js';
 
 const Video = () => {
   const { videoId } = useParams();
@@ -75,15 +76,21 @@ const Video = () => {
   if (loading) {
     return <div>Loading...</div>;
   }
-
   return (
     <div className="flex w-full h-screen bg-white">
       {/* Video Player on the left */}
       <div className="w-3/4 h-full p-4 flex flex-col">
         <div className="flex-grow bg-white">
           <VideoPlayer
-            videoUrl={videoData.video_url} // Adjust this if your API response structure is different
-            title={videoData.title}
+            videoUrl={videoData.video} // Adjust this if your API response structure is different
+            videoTitle={videoData.title}
+            videoDescription={videoData.description}
+            videoViews={videoData.view_count}
+            videoTimestamp={format(videoData.time)}
+            channelId={videoData.channel_id}
+            channelName={videoData.channel_name}
+            channelAvatar={videoData.avatar}
+            channelSubscribers={videoData.sub_count}
           />
         </div>
 
