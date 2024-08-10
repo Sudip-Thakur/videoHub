@@ -71,7 +71,7 @@ const Video = () => {
       console.error('Error subscribing to channel:', error);
     }
   };
-
+  console.log(videoData)
   if (loading) {
     return <div>Loading...</div>;
   }
