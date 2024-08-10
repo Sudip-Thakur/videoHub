@@ -1,9 +1,33 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import SmallCard from '../components/SmallCard.jsx';
+import { BASE_URL } from '../constants.js';
+import { format } from 'timeago.js';
 
-function WatchHistory() {
-  const numberOfSearchCards = 24; // Adjust the number as needed
+const WatchHistory = () => {
+  const [watchHistory, setWatchHistory] = useState([]);
+  const [loading, setLoading] = useState(true);
 
+  useEffect(() => {
+    const fetchWatchHistory = async () => {
+      try {
+        const response = await axios.get(`${BASE_URL}/api/v1/watchHistory`, {
+          withCredentials: true,
+        });
+        setWatchHistory(response.data.data); // Adjust if the API response structure differs
+      } catch (error) {
+        console.error('Error fetching watch history:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchWatchHistory();
+  }, []);
+
+  if (loading) {
+    return <div className="h-screen bg-gray-100 flex items-center justify-center">Loading...</div>;
+  }
   return (
     <div className="h-screen bg-gray-100 overflow-y-auto">
       {/* Fixed Title */}
@@ -12,13 +36,27 @@ function WatchHistory() {
       </div>
       
       {/* Cards */}
-      <div className="flex flex-wrap justify-center items-start pt-2"> {/* Minimal padding-top */}
-        {[...Array(numberOfSearchCards)].map((_, index) => (
-          <SmallCard key={index} />
-        ))}
+      <div className="flex flex-wrap justify-center items-start pt-2">
+        {watchHistory.length > 0 ? (
+          watchHistory.map((item, index) => (
+            <SmallCard 
+              key={index} // Ensure your watch history items have a unique 'id'
+              videoId={item.videoId} // Adjust based on the actual data structure
+              title={item.videotitle}
+              views={item.videoviews}
+              timestamp={format(item.watchedat)}
+              channelId={item.channelid}
+              channelName={item.channelname}
+              avatar={item.channelavatar}
+              thumbnail={item.videothumbnail}
+            />
+          ))
+        ) : (
+          <div className="text-center mt-4">No watch history available.</div>
+        )}
       </div>
     </div>
   );
-}
+};
 
-export default WatchHistory
+export default WatchHistory;

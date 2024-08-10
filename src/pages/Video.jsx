@@ -14,74 +14,72 @@ const Video = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    let isMounted = true; // Track if the component is mounted
+
     const fetchVideoData = async () => {
       try {
+        // Fetch video data
         const response = await axios.get(`${BASE_URL}/api/v1/videos/${videoId}`, {
           withCredentials: true,
         });
-        setVideoData(response.data.data);
+        if (isMounted) {
+          setVideoData(response.data.data);
+
+          // Delay the watch history API call
+          setTimeout(async () => {
+            try {
+              await axios.post(`${BASE_URL}/api/v1/watchHistory/add/${videoId}`, {}, {
+                withCredentials: true,
+              });
+            } catch (error) {
+              console.error('Error adding video to watch history:', error);
+            }
+          }, 3000); // Delay of 3 seconds
+        }
       } catch (error) {
         console.error('Error fetching video data:', error);
-      } finally {
-        setLoading(false);
       }
     };
 
-    // Uncomment the following lines to fetch related videos
-    // const fetchRelatedVideos = async () => {
-    //   try {
-    //     const response = await axios.get(`${BASE_URL}/api/v1/videos/random/video`, {
-    //       withCredentials: true,
-    //     });
-    //     setRelatedVideos(response.data.data);
-    //   } catch (error) {
-    //     console.error('Error fetching related videos:', error);
-    //   }
-    // };
+    const fetchRelatedVideos = async () => {
+      try {
+        const response = await axios.get(`${BASE_URL}/api/v1/videos/random/video`, {
+          withCredentials: true,
+        });
+        // Filter out the current video from related videos
+        const filteredVideos = response.data.data.filter(video => video.id !== videoId);
+        if (isMounted) {
+          setRelatedVideos(filteredVideos);
+        }
+      } catch (error) {
+        console.error('Error fetching related videos:', error);
+      } finally {
+        if (isMounted) {
+          setLoading(false);
+        }
+      }
+    };
 
     fetchVideoData();
-    // fetchRelatedVideos();
+    fetchRelatedVideos();
+
+    // Cleanup function to set isMounted to false
+    return () => {
+      isMounted = false;
+    };
   }, [videoId]);
 
-  const handleLike = async () => {
-    try {
-      const response = await axios.post(`${BASE_URL}/api/v1/likes/video/${videoId}`, {}, {
-        withCredentials: true,
-      });
-      setVideoData(prevState => ({
-        ...prevState,
-        liked: response.data.data.liked,
-        like_count: response.data.data.liked ? prevState.like_count + 1 : prevState.like_count - 1
-      }));
-    } catch (error) {
-      console.error('Error liking video:', error);
-    }
-  };
-
-  const handleSubscribe = async () => {
-    try {
-      const response = await axios.post(`${BASE_URL}/api/v1/subscriptions/channel/${videoData.channel_id}`, {}, {
-        withCredentials: true
-      });
-      setVideoData(prevState => ({
-        ...prevState,
-        subscribed: response.data.data.subscribed,
-        sub_count: response.data.data.subscribed ? prevState.sub_count + 1 : prevState.sub_count - 1
-      }));
-    } catch (error) {
-      console.error('Error subscribing to channel:', error);
-    }
-  };
-  console.log(videoData)
   if (loading) {
     return <div>Loading...</div>;
   }
+
   return (
     <div className="flex w-full h-screen bg-white">
       {/* Video Player on the left */}
       <div className="w-3/4 h-full p-4 flex flex-col">
         <div className="flex-grow bg-white">
           <VideoPlayer
+            videoId={videoId}
             videoUrl={videoData.video} // Adjust this if your API response structure is different
             videoTitle={videoData.title}
             videoDescription={videoData.description}
@@ -91,6 +89,9 @@ const Video = () => {
             channelName={videoData.channel_name}
             channelAvatar={videoData.avatar}
             channelSubscribers={videoData.sub_count}
+            likeCount={videoData.like_count}
+            liked={videoData.liked}
+            subscribed={videoData.subscribed}
           />
         </div>
 
@@ -107,9 +108,14 @@ const Video = () => {
           {relatedVideos.map((video) => (
             <VideoPreview
               key={video.id}
-              thumbnail={video.thumbnail}
               videoId={video.id}
+              channelId={video.owner}
               title={video.title}
+              avatar={video.avatar}
+              thumbnail={video.thumbnail}
+              channelName={video.fullname}
+              views={video.views}
+              timestamp={format(video.createdat)}
             />
           ))}
         </div>
