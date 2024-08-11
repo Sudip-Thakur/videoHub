@@ -15,8 +15,7 @@ function Subscription() {
         const response = await axios.get(`${BASE_URL}/api/v1/subscriptions/channels`, {
           withCredentials: true,
         });
-        console.log('API Response:', response.data); // Check the entire response
-        console.log('Fetched Videos:', response.data.data); // Check the videos data
+
         setChannels(response.data.data); // Update the videos state
       } catch (error) {
         console.error('Error fetching videos:', error);

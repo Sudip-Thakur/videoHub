@@ -28,7 +28,6 @@ const WatchHistory = () => {
   if (loading) {
     return <div className="h-screen bg-gray-100 flex items-center justify-center">Loading...</div>;
   }
-  console.log(watchHistory)
   return (
     <div className="h-screen bg-gray-100 overflow-y-auto">
       {/* Fixed Title */}

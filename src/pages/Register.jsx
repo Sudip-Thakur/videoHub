@@ -66,7 +66,6 @@ const Register = () => {
       },{
         withCredentials:true
       })
-      console.log('Signup successful');
       navigate('/login'); // Redirect to login page after successful signup
     } catch (err) {
       setError('Signup failed');

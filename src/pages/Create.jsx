@@ -29,7 +29,6 @@ const Create = () => {
         headers: { 'Content-Type': 'multipart/form-data' },
         withCredentials: true // Ensure cookies are sent with the request
       });
-      console.log(response.data);
 
       setSuccessMessage('Video uploaded successfully! Redirecting to home...');
       

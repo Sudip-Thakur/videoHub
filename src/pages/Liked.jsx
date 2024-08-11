@@ -16,8 +16,6 @@ function Liked() {
         const response = await axios.get(`${BASE_URL}/api/v1/likes/likedVideo`, {
           withCredentials: true,
         });
-        console.log('API Response:', response.data); // Check the entire response
-        console.log('Fetched Videos:', response.data.data); // Check the videos data
         setVideos(response.data.data); // Update the videos state
       } catch (error) {
         console.error('Error fetching videos:', error);

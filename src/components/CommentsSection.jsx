@@ -2,7 +2,6 @@ import React from 'react';
 import Comment from './Comment.jsx'; // Adjust the import path as needed
 
 const CommentsSection = ({ comments }) => {
-  console.log(comments);
 
   if (!comments || comments.length === 0) {
     return (
